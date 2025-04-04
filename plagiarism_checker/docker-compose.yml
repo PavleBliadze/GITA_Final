@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  embedding_service:
+    build:
+      context: ./embedding_service
+    ports:
+      - "8000:8000"
+    networks:
+      - plagiarism_network
+
+  plagiarism_api:
+    build:
+      context: ./api
+    ports:
+      - "8001:8001"
+    depends_on:
+      - embedding_service
+    networks:
+      - plagiarism_network
+
+  indexer:
+    build:
+      context: ./indexer
+    networks:
+      - plagiarism_network
+
+networks:
+  plagiarism_network:
+    driver: bridge
