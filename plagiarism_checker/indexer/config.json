@@ -1,0 +1,7 @@
+{
+    "repo_list": "repositories.txt",
+    "clone_dir": "../data/repos",
+    "file_extensions": [".py", ".js", ".ts", ".c", ".cpp", ".java"],
+    "embedding_model": "microsoft/codebert-base"
+}
+  

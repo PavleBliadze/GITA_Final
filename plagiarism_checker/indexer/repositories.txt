@@ -1,0 +1,6 @@
+# https://github.com/TheAlgorithms/Python
+# https://github.com/30-seconds/30-seconds-of-code
+# https://github.com/geohot/tinygrad
+https://github.com/benhoyt/inih
+https://github.com/nvim-lua/kickstart.nvim
+https://github.com/pybind/cmake_example
