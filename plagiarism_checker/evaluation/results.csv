@@ -1,0 +1,26 @@
+code,label,rag_verdict,llm_verdict,full_verdict
+"#define MAX_LINE 200
+#define MAX_SECTION 50
+#define MAX_NAME 50",კი,კი,არა,არა
+"static int ini_handler(void* user, const char* section,
+                          const char* name,
+                          const char* value)",კი,კი,არა,არა
+"class CMakeExtension(Extension):
+    def __init__(self, name: str, sourcedir: str = """") -> None:
+        super().__init__(name, sources=[])
+        self.sourcedir = os.fspath(Path(sourcedir).resolve())",კი,კი,არა,არა
+"vim.g.mapleader = ' '
+vim.g.maplocalleader = ','",კი,კი,არა,არა
+"option(INIH_SHARED_LIB ""Build shared library"" OFF)",კი,კი,არა,არა
+"def calculate_area(length, width):
+    return length * width",არა,კი,არა,არა
+"const char* greet() {
+    return ""Hello, world!"";
+}",არა,კი,არა,არა
+"x = 5
+y = 10
+print(f""Sum: {x + y}"")",არა,კი,არა,არა
+"for i in range(1, 11):
+    if i % 2 == 0:
+        print(i)",არა,კი,არა,არა
+"vim.keymap.set('n', '<leader>w', ':w<CR>', { silent = true })",არა,კი,არა,არა

@@ -1,0 +1,43 @@
+[
+    {
+      "code": "#define MAX_LINE 200\n#define MAX_SECTION 50\n#define MAX_NAME 50",
+      "label": "კი"
+    },
+    {
+      "code": "static int ini_handler(void* user, const char* section,\n                          const char* name,\n                          const char* value)",
+      "label": "კი"
+    },
+    {
+      "code": "class CMakeExtension(Extension):\n    def __init__(self, name: str, sourcedir: str = \"\") -> None:\n        super().__init__(name, sources=[])\n        self.sourcedir = os.fspath(Path(sourcedir).resolve())",
+      "label": "კი"
+    },
+    {
+      "code": "vim.g.mapleader = ' '\nvim.g.maplocalleader = ','",
+      "label": "კი"
+    },
+    {
+      "code": "option(INIH_SHARED_LIB \"Build shared library\" OFF)",
+      "label": "კი"
+    },
+    {
+      "code": "def calculate_area(length, width):\n    return length * width",
+      "label": "არა"
+    },
+    {
+      "code": "const char* greet() {\n    return \"Hello, world!\";\n}",
+      "label": "არა"
+    },
+    {
+      "code": "x = 5\ny = 10\nprint(f\"Sum: {x + y}\")",
+      "label": "არა"
+    },
+    {
+      "code": "for i in range(1, 11):\n    if i % 2 == 0:\n        print(i)",
+      "label": "არა"
+    },
+    {
+      "code": "vim.keymap.set('n', '<leader>w', ':w<CR>', { silent = true })",
+      "label": "არა"
+    }
+  ]
+  
