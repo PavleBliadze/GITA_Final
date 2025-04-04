@@ -1,6 +1,6 @@
 # GITA_Final
 Code Plagiarism Detection System
-1. Aim of the Project
+## Aim of the Project
 The Code Plagiarism Detection System aims to identify plagiarized code by comparing user-submitted code against a database of code snippets from publicly available GitHub repositories. The system uses a combination of vector embeddings and LLM to determine the similarity between code snippets and detect plagiarism.
 
 Key Components:
