@@ -48,7 +48,7 @@ def clone_repo(url):
     repo_name = url.strip().split("/")[-1].replace(".git", "")
     dest = CLONE_DIR / repo_name
     if dest.exists():
-        print(f"✅ Repo already cloned: {repo_name}")
+        print(f"Repo already cloned: {repo_name}")
         return dest
     print(f"📥 Cloning {repo_name}...")
     try:
