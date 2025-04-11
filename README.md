@@ -1,6 +1,6 @@
 # GITA_Final
 Code Plagiarism Detection System
-1. Aim of the Project
+## Aim of the Project
 The Code Plagiarism Detection System aims to identify plagiarized code by comparing user-submitted code against a database of code snippets from publicly available GitHub repositories. The system uses a combination of vector embeddings and LLM to determine the similarity between code snippets and detect plagiarism.
 
 Key Components:
@@ -17,7 +17,7 @@ RAG-only: Retrieval-Augmented Generation, relying solely on vector similarity.
 LLM-only: Pure language model analysis without vector search. 
 Full System (RAG + LLM): Combines retrieval and LLM for hybrid detection.
 
-2. Embedding Logic
+## Embedding Logic
 The CodeBERT model is used to generate the embeddings. This model is a transformer-based architecture that captures both syntax and semantics of code.
 
 Embedding Overview:
@@ -50,7 +50,7 @@ uvicorn plagiarism_checker.embedding_service.main:app --reload --port 8000
 
 This will start the embedding service on http://localhost:8000.
 
-3. Indexing Logic
+## Indexing Logic
 Indexing Process:
 Cloning Repositories: The system clones a set of GitHub repositories to collect code files.
 
@@ -71,7 +71,7 @@ pip install -r plagiarism_checker/indexer/requirements.txt
 Run the Indexer:
 python plagiarism_checker/indexer/indexer.py
 
-4. How the System Works
+## How the System Works
 System Overview
 The system works by using FAISS for fast vector similarity searches and GPT-based language models for final plagiarism verification.
 
@@ -106,7 +106,7 @@ LLM-only (Language Model): The system uses GPT to evaluate plagiarism without us
 
 Full System: Combines both RAG (vector search) and LLM (plagiarism confirmation).
 
-5. Creation of Test Cases
+## Creation of Test Cases
 The test cases were created to evaluate the system's performance using both plagiarized and non-plagiarized code examples. 
 
 Plagiarized Test Cases:
@@ -119,7 +119,7 @@ Non-Plagiarized Test Cases:
 For each non-plagiarized case, original code snippets were created that did not match any code from the GitHub repositories.
 These snippets were added to the test cases with a label of "არა" (no, not plagiarized).
 
-6. How to Run the Full System
+## How to Run the Full System
 docker-compose build
 docker-compose up
 
