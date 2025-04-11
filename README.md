@@ -41,12 +41,12 @@ bash
 Install the required packages for the embedding service:
 
 bash
-pip install -r embedding_service/requirements.txt
+pip install -r plagiarism_checker/embedding_service/requirements.txt
 
 Run the Embedding Service:
 
 bash
-uvicorn plagiarism_checker.embedding_service.main:app --reload --port 8001
+uvicorn plagiarism_checker.embedding_service.main:app --reload --port 8000
 
 This will start the embedding service on http://localhost:8000.
 
@@ -66,10 +66,10 @@ Metadata: Metadata, such as the original file path and chunk ID, is saved for re
 
 # How to Run the Indexer
 Install Dependencies:
-pip install -r indexer/requirements.txt
+pip install -r plagiarism_checker/indexer/requirements.txt
 
 Run the Indexer:
-python indexer/indexer.py
+python plagiarism_checker/indexer/indexer.py
 
 4. How the System Works
 System Overview
@@ -91,7 +91,7 @@ Result: The system returns the verdict and a list of similar code files (if any)
 
 # How to Run the Plagiarism API
 Install Dependencies for the API:
-pip install -r api/requirements.txt
+pip install -r plagiarism_checker/api/requirements.txt
 
 Start the Plagiarism API:
 uvicorn plagiarism_checker.api.main:app --reload --port 8001
