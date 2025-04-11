@@ -8,6 +8,7 @@ from pathlib import Path
 from tqdm import tqdm
 from pygments.lexers import guess_lexer
 from pygments.util import ClassNotFound
+from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 
 CONFIG_PATH = Path(__file__).parent / "config.json"
 with open(CONFIG_PATH) as f:
@@ -48,9 +49,9 @@ def clone_repo(url):
     repo_name = url.strip().split("/")[-1].replace(".git", "")
     dest = CLONE_DIR / repo_name
     if dest.exists():
-        print(f"✅ Repo already cloned: {repo_name}")
+        print(f"Repo already cloned: {repo_name}")
         return dest
-    print(f"📥 Cloning {repo_name}...")
+    print(f"Cloning {repo_name}...")
     try:
         git.Repo.clone_from(url, dest)
         return dest
@@ -110,17 +111,43 @@ def strip_comments(code, ext):
 
     return code
 
-def logical_chunk(code: str, max_tokens=512):
-    chunks = []
-    current = []
-    for line in code.splitlines():
-        current.append(line)
-        joined = "\n".join(current)
-        if len(joined.split()) >= max_tokens:
-            chunks.append(joined)
-            current = []
-    if current:
-        chunks.append("\n".join(current))
+def get_language_enum(ext):
+    extension_to_language = {
+        ".py": Language.PYTHON,
+        ".js": Language.JS,
+        ".ts": Language.TS,
+        ".java": Language.JAVA,
+        ".c": Language.CPP,
+        ".cpp": Language.CPP,
+        ".h": Language.CPP,
+        ".hpp": Language.CPP,
+        ".cs": Language.CSHARP,
+        ".go": Language.GO,
+        ".rb": Language.RUBY,
+        ".php": Language.PHP,
+        ".html": Language.HTML,
+        ".css": Language.CSS,
+        ".sql": Language.SQL,
+        ".rs": Language.RUST,
+    }
+    return extension_to_language.get(ext)
+
+def code_chunk(code: str, ext: str):
+    language = get_language_enum(ext)
+    if language:
+        splitter = RecursiveCharacterTextSplitter.from_language(
+            language=language,
+            chunk_size=1500,
+            chunk_overlap=200
+        )
+    else:
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=1500,
+            chunk_overlap=200,
+            separators=["\n\n", "\n", " ", ""]
+        )
+    
+    chunks = splitter.split_text(code)
     return chunks
 
 def fallback_chunk(code: str, window=256, overlap=64):
@@ -153,15 +180,12 @@ def process_file(file_path: Path):
         code = strip_comments(code, ext)
         lang = detect_language(code)
 
-        chunks = logical_chunk(code)
-        final_chunks = []
-        for chunk in chunks:
-            if len(chunk.split()) <= 512:
-                final_chunks.append(chunk)
-            else:
-                final_chunks.extend(fallback_chunk(chunk))
-
-        for i, chunk in enumerate(final_chunks):
+        chunks = code_chunk(code, ext)
+        
+        for i, chunk in enumerate(chunks):
+            if len(chunk.split()) > 512:
+                continue
+            
             embedding = get_embedding(chunk)
             index.add(np.array([embedding]))
             metadata.append({
@@ -195,4 +219,4 @@ def main():
     print("Indexing complete.")
 
 if __name__ == "__main__":
-    main()
+   main()
